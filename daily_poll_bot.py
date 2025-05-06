@@ -47,7 +47,7 @@ def main():
 
     scheduler.add_job(
         lambda: app.create_task(send_daily_poll(ContextTypes.DEFAULT_TYPE(bot=Bot(token=TOKEN)))), 
-        'cron', hour=17, minute=36, timezone=saudi_time
+        'cron', hour=17, minute=41, timezone=saudi_time
     )
 
     scheduler.start()
