@@ -1,12 +1,18 @@
 services:
   - type: web
-    name: daily-poll-webhook
+    name: daily-poll-bot
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: python webhook.py
+    startCommand: python app.py
+    envVars:
+      - key: BOT_TOKEN
+        value: your_bot_token_here
+      - key: CHAT_ID
+        value: your_chat_id_here
 
-  - type: cron
-    name: daily-poll-scheduler
+  - type: worker
+    name: poll-scheduler
     env: python
-    schedule: "0 5 * * *"  # 5 AM KSA time
-    command: curl -X POST https://daily-poll-webhook.onrender.com/webhook
+    buildCommand: pip install -r requirements.txt
+    startCommand: curl -X POST https://daily-poll-bot.onrender.com/webhook
+    schedule: "0 5 * * *"
