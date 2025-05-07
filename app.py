@@ -3,8 +3,8 @@ from flask import Flask, request
 from telegram import Bot
 import datetime
 
-TOKEN = os.getenv("7599034036:AAHoltCH4gvuUxnxItsi-gL6yQ8FvfQ6GYM")
-CHAT_ID = os.getenv("6393012286")
+TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 bot = Bot(token=TOKEN)
 app = Flask(__name__)
