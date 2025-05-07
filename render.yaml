@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: telegram-poll-bot
+    env: python
+    buildCommand: "pip install -r requirements.txt"
+    startCommand: "gunicorn webhook:app"
+    plan: free
+
+cronJobs:
+  - name: daily_poll
+    schedule: "35 14 * * *"  # 5:35 PM Saudi time = 14:35 UTC
+    command: "curl https://YOUR-RENDER-URL/webhook"
