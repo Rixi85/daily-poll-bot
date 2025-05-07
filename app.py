@@ -3,10 +3,8 @@ from telegram import Bot
 import os
 import datetime
 
-# Correct way to get from environment variables
-TOKEN = os.getenv("7599034036:AAHoltCH4gvuUxnxItsi-gL6yQ8FvfQ6GYM")
-CHAT_ID = os.getenv("6393012286")
-
+TOKEN = os.getenv("TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 bot = Bot(token=TOKEN)
 
 app = Flask(__name__)
@@ -23,15 +21,8 @@ def webhook():
 def send_daily_poll():
     today = datetime.datetime.now().strftime("%A, %d %B %Y")
     question = f"What are your main tasks for today? ({today})"
-    options = [
-        "1- أذكار الصباح",
-        "2- التسبيح",
-        "3- الإستغفار",
-        "4- الصلاة على النبي",
-        "5- لا اله الا الله والله اكبر",
-        "6- لا اله الا الله وحده",
-        "7- لا اله الا الله ولا شريك له",
-        "8- لا اله الا الله ولا حول ولا قوة الا بالله",
-        "9- أذكار المساء"
-    ]
+    options = ["Client editing", "Studio shoot", "Location shoot", "Backups", "Retouching"]
     bot.send_poll(chat_id=CHAT_ID, question=question, options=options, is_anonymous=False)
+
+if __name__ == "__main__":
+    app.run()
