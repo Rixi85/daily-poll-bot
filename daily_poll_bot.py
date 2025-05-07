@@ -51,7 +51,6 @@ def main():
     )
 
     scheduler.start()
-    app.run_polling()
-
+    
 if __name__ == '__main__':
     main()
