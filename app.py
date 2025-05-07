@@ -1,7 +1,7 @@
-import os
 from flask import Flask, request
 from telegram import Bot
 import datetime
+import os
 
 TOKEN = os.getenv("BOT_TOKEN")
 CHAT_ID = os.getenv("CHAT_ID")
@@ -11,12 +11,12 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Bot is running with webhook!"
+    return "Bot is live!"
 
 @app.route("/webhook", methods=["POST"])
 def webhook():
     send_daily_poll()
-    return "ok", 200
+    return "OK", 200
 
 def send_daily_poll():
     today = datetime.datetime.now().strftime("%A, %d %B %Y")
