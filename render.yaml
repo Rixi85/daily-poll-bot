@@ -1,12 +1,12 @@
 services:
   - type: web
-    name: telegram-poll-bot
+    name: daily-poll-webhook
     env: python
-    buildCommand: "pip install -r requirements.txt"
-    startCommand: "gunicorn webhook:app"
-    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: python webhook.py
 
-cronJobs:
-  - name: daily_poll
-    schedule: "35 14 * * *"  # 5:35 PM Saudi time = 14:35 UTC
-    command: "curl https://YOUR-RENDER-URL/webhook"
+  - type: cron
+    name: daily-poll-scheduler
+    env: python
+    schedule: "0 5 * * *"  # 5 AM KSA time
+    command: curl -X POST https://daily-poll-webhook.onrender.com/webhook
